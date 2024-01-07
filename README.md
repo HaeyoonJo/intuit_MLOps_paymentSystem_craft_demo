@@ -2,11 +2,11 @@
 This Payment System demo repo provides brief workflow operates on AWS along with deployed Risk Engine application as well as details on Wiki document.
 
 ## Jump to:
-- [Payment System REST APIs](#REST-API-guidance)
-- [Payload attributes](#Payload-attributes)
-- [Getting Started](#Getting-Started)
-- [Getting Help](#Getting-Help)
-- [More guidance](#More-guidance)
+- [Payment System REST APIs](#1-REST-API-guidance)
+- [Payload attributes](#2-Payload-attributes)
+- [Getting Started](#3-Getting-Started)
+- [Getting Help](#4-Getting-Help)
+- [More guidance](#5-More-guidance)
 
 # 1. REST API guidance
 The Payment processing platform provides several RESTful APIs to create, capture and retrieve payments.

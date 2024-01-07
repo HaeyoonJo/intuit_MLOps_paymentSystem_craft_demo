@@ -6,7 +6,7 @@ This Payment System demo repo provides brief workflow operates on AWS along with
 - [Payload attributes](#2-Payload-attributes)
 - [Getting Started](#3-Getting-Started)
 - [Getting Help](#4-Getting-Help)
-- [More guidance](#5-More-guidance)
+- [More guidance](#5-Further-Reading)
 
 # 1. REST API guidance
 The Payment processing platform provides several RESTful APIs to create, capture and retrieve payments.
@@ -191,4 +191,18 @@ Please only use the email for urgent or private matters - for other requests, op
 I will try to respond to emails within 3 business days.
 
 
-# 5. More guidance
+# 5. Further Reading
+
+This Getting Started guide covers the basics of running Risk Engine in Docker for development and testing purposes.
+
+For guidance on additional configurations and production deployments, see our in-depth technical documentation:
+
+### Payment System Wiki
+The Payment System Wiki contains extensive guides and references for:
+- Payment System architecture
+- Risk Engine REST API design
+- Workflow and deployment to production
+- Code overviews
+- Release notes and changes
+
+Wiki: https://github.com/HaeyoonJo/intuit_MLOps_paymentSystem_craft_demo/wiki

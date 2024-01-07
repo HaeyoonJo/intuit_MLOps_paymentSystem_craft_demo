@@ -8,7 +8,6 @@ This Payment System demo repo provides brief workflow operates on AWS along with
 - [Getting Help](#Getting-Help)
 - [More guidance](#More-guidance)
 
-
 # REST API guidance
 The Payment processing platform provides several RESTful APIs to create, capture and retrieve payments.
 
@@ -69,27 +68,33 @@ The payment creation request payload contains the following attributes:
 
 - Type: `string`
 
-- Description: Payment currency code (e.g. USD, EUR)
+- Description: Payment currency (e.g. USD, EUR)
 
 ### userId
 
 - Type: `string` 
 
-- Description: Paying user's unique identifier (GUID)
+- Description: Paying user unique identifier (GUID)
 
 ### payeeId
 
 - Type: `string`
 
-- Description: Payee user's unique identifier (GUID) 
+- Description: Payee user unique identifier (GUID) 
 
 ### paymentMethodId
 
 - Type: `string` 
 
-- Description: Payment method's unique identifier (GUID)
+- Description: Payment method unique identifier (GUID)
 
 ## Sample Request
+This example request payload:
+- Amount to pay of 100
+- Currency is USD
+- userId, payeeId, paymentMethodId provided as GUID strings
+
+The payload is validated against the PaymentSchema before creating the payment
 
 ```json
 {

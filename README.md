@@ -43,9 +43,10 @@ Status: 201 Created
 Description: The request was successfully fulfilled and resulted in one created
 Body: See below
 ```
-Status: 201 OK
+Status: 201 Created
 {
-  "Result": "Success",
+  "StatusCode": 201,
+  "Status": "Success",
   "PaymentId": "5565f337-c901-458c-bab8-20fcf12ba573"
 }
 ```
@@ -106,8 +107,68 @@ The payload is validated against the PaymentSchema before creating the payment
 }
 ```
 
-
 ## Getting Started
+This guide will walk you through setting up and running the Risk Engine python application in a Docker container.
+
+## Prerequisites
+- Docker installed on your machine. See which platform you need in the following official Docker installation [document](https://docs.docker.com/engine/install/)
+- Clone this repository
+
+## Build Docker Image
+Clone the Risk Engine repository and navigate to the project directory:
+```
+git clone https://github.com/HaeyoonJo/intuit_MLOps_paymentSystem_craft_demo.git
+cd intuit_MLOps_paymentSystem_craft_demo
+```
+
+Build the Docker image from the Dockerfile:
+I won't track by version, however, the best practice is versioning your application using `tag`. See what's [Docker Image tag](https://docs.docker.com/engine/reference/commandline/image_tag/).  
+This builds the image and tags it as `risk-engine`.
+```
+docker build -t risk-engine .
+```
+
+## Create a Docker Network
+It's best practice to run containers in a custom network so they can communicate or isolate from other containers. Create a network:
+
+```
+docker network create risk-engine-net
+```
+
+## Run the Container
+Run the `risk-engine` image in a container attached to the network.  
+
+The Risk Engine is Flask based and we will use 5000 port number in order to communicate with it
+
+This runs the container detached, names it `risk-engine`, attaches it to `risk-engine-net`, publishes port 5000, and uses the `risk-engine` image.
+
+```
+docker run --name risk-engine --network risk-engine-net --rm -p 5000:5000 risk-engine
+```
+
+The app should now be running on http://localhost:5000!
+
+## Test request
+Once its container is up and running, you can send request using terminal or postman or any other tools that handy for you.
+
+Example request provided below
+```
+$ curl -X POST -H "Content-Type: application/json" -d '{"amount": 70.5, "currency": "USD", "userId": "e8af92bd-1910-421e-8de0-cb3dcf9bf44d", "payeeId": "4c3e304e-ce79-4f53-bb26-4e198e6c780a", "paymentMethodId": "8e28af1b-a3a0-43a9-96cc-57d66dd68294"}' http://localhost:5000/payments
+{
+  "StatusCode": 201,
+  "Status": "Success",
+  "PaymentId": "3be0f9fc-3cdf-44d3-8524-b882f4ff0d80"
+}
+```
+
+## Shut Down and Clean Up
+Container will be removed automatically as we used `--rm` option in `docker run` command.
+
+To remove the network and Image:
+```
+docker network rm risk-engine-net
+docker rmi risk-engine
+```
 
 ## Getting Help
 

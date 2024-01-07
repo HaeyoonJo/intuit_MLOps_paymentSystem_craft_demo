@@ -172,4 +172,23 @@ docker rmi risk-engine
 
 # 4. Getting Help
 
+If you need any help with setting up or running Risk Engine, have questions, or run into any issues, there are a couple ways to get assistance:
+
+### GitHub Issues  
+We welcome bug reports, feature requests, and questions in the GitHub issue tracker for Risk Engine. Open an issue describing your problem or question here:
+
+https://github.com/HaeyoonJo/intuit_MLOps_paymentSystem_craft_demo/issues/
+
+Make sure to include details like your operating system, Docker version, steps to reproduce issues, and any error messages you are getting.
+
+I monitor issues frequently and will provide support.
+
+### Email  
+For time-sensitive inquiries or privacy concerns, you can email me directly at haeyoon.devops@gmail.com.
+
+Please only use the email for urgent or private matters - for other requests, opening a GitHub issue is preferred so solutions can benefit others.
+
+I will try to respond to emails within 3 business days.
+
+
 # 5. More guidance

@@ -8,7 +8,7 @@ This Payment System demo repo provides brief workflow operates on AWS along with
 - [Getting Help](#Getting-Help)
 - [More guidance](#More-guidance)
 
-# REST API guidance
+# 1. REST API guidance
 The Payment processing platform provides several RESTful APIs to create, capture and retrieve payments.
 
 ## API Authentication
@@ -55,7 +55,7 @@ The response contains the `Result`, `PaymentId` and `status` indicating the paym
 
 
 
-# Payload attributes
+# 2. Payload attributes
 
 The payment creation request payload contains the following attributes:
 
@@ -107,7 +107,7 @@ The payload is validated against the PaymentSchema before creating the payment
 }
 ```
 
-## Getting Started
+# 3. Getting Started
 This guide will walk you through setting up and running the Risk Engine python application in a Docker container.
 
 ## Prerequisites
@@ -121,15 +121,17 @@ git clone https://github.com/HaeyoonJo/intuit_MLOps_paymentSystem_craft_demo.git
 cd intuit_MLOps_paymentSystem_craft_demo
 ```
 
-Build the Docker image from the Dockerfile:
-I won't track by version, however, the best practice is versioning your application using `tag`. See what's [Docker Image tag](https://docs.docker.com/engine/reference/commandline/image_tag/).  
-This builds the image and tags it as `risk-engine`.
+Build the Docker image from the Dockerfile:  
+
+We won't version the tag(s), however, the best practice is versioning your Docker Image(s) using `tag`. See how to use [Docker Image tag](https://docs.docker.com/engine/reference/commandline/image_tag/).  
+
+This builds the image and tags it as `risk-engine`
 ```
 docker build -t risk-engine .
 ```
 
 ## Create a Docker Network
-It's best practice to run containers in a custom network so they can communicate or isolate from other containers. Create a network:
+One of best practices to run containers in a custom network so they can communicate or isolate from other containers. Create a network:
 
 ```
 docker network create risk-engine-net
@@ -137,8 +139,6 @@ docker network create risk-engine-net
 
 ## Run the Container
 Run the `risk-engine` image in a container attached to the network.  
-
-The Risk Engine is Flask based and we will use 5000 port number in order to communicate with it
 
 This runs the container detached, names it `risk-engine`, attaches it to `risk-engine-net`, publishes port 5000, and uses the `risk-engine` image.
 
@@ -148,8 +148,8 @@ docker run --name risk-engine --network risk-engine-net --rm -p 5000:5000 risk-e
 
 The app should now be running on http://localhost:5000!
 
-## Test request
-Once its container is up and running, you can send request using terminal or postman or any other tools that handy for you.
+## Test Risk Engine
+Once the container is up and running, you can send request using terminal or postman or any other tools that handy for you.
 
 Example request provided below
 ```
@@ -170,6 +170,6 @@ docker network rm risk-engine-net
 docker rmi risk-engine
 ```
 
-## Getting Help
+# 4. Getting Help
 
-## More guidance
+# 5. More guidance

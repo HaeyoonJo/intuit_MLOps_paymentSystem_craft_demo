@@ -20,7 +20,7 @@ services:
      - project
 
   rest-api:
-    build: ./rest-api
+    build: ./paymentSystemRestAPI
     ports:
       - "5000:5000"
     depends_on:
@@ -31,8 +31,8 @@ services:
     networks:
       - project
 
-  consumer:
-    build: ./consumer
+  risk-engine:
+    build: ./riskEngine
     depends_on:
       rabbitmq:
         condition: service_healthy

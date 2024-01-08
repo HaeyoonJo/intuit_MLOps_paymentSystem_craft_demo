@@ -35,18 +35,18 @@ def get_rabbitmq_channel():
         connection.close()  # Ensure connection closure
 
 
-@app.route('/post', methods=['POST'])
-def receive_message():
-    """Receives a message and publishes it to the 'my_queue' queue."""
-    data = request.json
-    print(f'===== REST API Service =====', flush=True)
-    print(f'data: {data}', flush=True)
+# @app.route('/post', methods=['POST'])
+# def receive_message():
+#     """Receives a message and publishes it to the 'my_queue' queue."""
+#     data = request.json
+#     print(f'===== REST API Service =====', flush=True)
+#     print(f'data: {data}', flush=True)
 
-    with get_rabbitmq_channel() as channel:
-        channel.queue_declare(queue='my_queue')
-        channel.basic_publish(exchange='', routing_key='my_queue', body=str(data))
+#     with get_rabbitmq_channel() as channel:
+#         channel.queue_declare(queue='my_queue')
+#         channel.basic_publish(exchange='', routing_key='my_queue', body=str(data))
 
-    return 'Message published to queue', 201
+#     return 'Message published to queue', 201
 
 
 @app.route('/payments', methods=['POST'])

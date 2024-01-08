@@ -12,6 +12,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the current directory contents into the container at /app
-COPY *.py .
+COPY app.py \
+        payment_routes.py \
+        payment_utils.py \
+        rabbitmq_utils.py \
+        validation.py \
+        .
 
 CMD ["python", "-u", "app.py"]

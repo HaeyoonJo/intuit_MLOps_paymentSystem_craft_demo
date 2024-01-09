@@ -108,48 +108,72 @@ The payload is validated against the PaymentSchema before creating the payment
 ```
 
 # 3. Getting Started
-This guide will walk you through setting up and running the Risk Engine python application in a Docker container.
+
+This guide will walk you through setting up and running the Payment System demo including Payment System, Rabbit MQ, Risk Engine using Docker Compose, which simplifies the process of managing multi-container Docker applications.
 
 ## Prerequisites
-- Docker installed on your machine. See which platform you need in the following official Docker installation [document](https://docs.docker.com/engine/install/)
-- Clone this repository
 
-## Build Docker Image
-Clone the Risk Engine repository and navigate to the project directory:
+- Docker and Docker Compose installed on your machine. If you do not have them installed, follow the official Docker installation guide [here](https://docs.docker.com/get-docker/) and the Docker Compose installation guide [here](https://docs.docker.com/compose/install/).
+
+## Clone the Repository
+
+Clone the repository to your local machine using the following command:
 ```
 git clone https://github.com/HaeyoonJo/intuit_MLOps_paymentSystem_craft_demo.git
 cd intuit_MLOps_paymentSystem_craft_demo
 ```
 
-Build the Docker image from the Dockerfile:  
+## Configure the Environment
 
-We won't version the tag(s), however, the best practice is versioning your Docker Image(s) using `tag`. See how to use [Docker Image tag](https://docs.docker.com/engine/reference/commandline/image_tag/).  
+Before running the application, you may need to configure environment variables used by the Docker containers. In this demo, `rabbitmq` service requires but I put in the compose file for demo. If required, create a `.env` file in the root directory and specify the necessary variables.
 
-This builds the image and tags it as `risk-engine`
+Example `.env` file:
 ```
-docker build -t risk-engine .
+RABBITMQ_DEFAULT_USER=admin
+RABBITMQ_DEFAULT_PASS=password
 ```
-
-## Create a Docker Network
-One of best practices to run containers in a custom network so they can communicate or isolate from other containers. Create a network:
-
+Example `docker-compose.yml` file:
 ```
-docker network create risk-engine-net
-```
-
-## Run the Container
-Run the `risk-engine` image in a container attached to the network.  
-
-This runs the container detached, names it `risk-engine`, attaches it to `risk-engine-net`, publishes port 5000, and uses the `risk-engine` image.
-
-```
-docker run --name risk-engine --network risk-engine-net --rm -p 5000:5000 risk-engine
+env_file:
+  - .env
 ```
 
-The app should now be running on http://localhost:5000!
+## Run Docker Compose
 
-## Test Risk Engine
-Once the container is up and running, you can send request using terminal or postman or any other tools that handy for you.
+Navigate to the directory containing your `docker-compose.yml` file and run the following command to start all services defined in the Docker Compose configuration:
+```bash
+docker compose up --build
+```
+If you wish to run it in background (detached mode), use `-d` flag.
+
+## Verify the Application
+
+After starting the services, you can verify that Payment System is up and running by checking the logs of each container. 
+
+Replace `<container-id>` with the actual ID of your Risk Engine container. You can find the container ID by running `docker ps` and looking for the container running the Risk Engine.
+
+In the logs, look for a message similar to the following:
+```
+$ docker logs 12538163f43e
+Waiting for messages...
+Received message: b'{"payment_data": {...}, "payment_id": "9e0f1934-3c9c-4b45-87e6-52a5acc89301"}'
+Payment 9e0f1934-3c9c-4b45-87e6-52a5acc89301 approved. Random num: 0.45945097007442726
+```
+
+This log entry indicates that the payment with ID `9e0f1934-3c9c-4b45-87e6-52a5acc89301` has been processed and approved by the Risk Engine. If the payment were declined, the log would instead indicate that the payment was declined.
+
+Please note that the `Random num` is part of the risk analysis simulation, where a random number determines the approval of the payment. In a real-world scenario, this would be replaced with actual risk assessment logic.
+
+
+## Checking Payment Status
+
+The Risk Engine logs each payment it processes, including the payment ID and the result of the risk analysis. To check the status of a specific payment, you can look at the Risk Engine's logs.
+
+
+## Interact with the Risk Engine
+
+With the Risk Engine running, you can now interact with it using the defined APIs or by sending messages to the configured RabbitMQ queues.
+
 
 Example request provided below
 ```
@@ -162,13 +186,18 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"amount": 70.5, "currenc
 ```
 
 ## Shut Down and Clean Up
-Container will be removed automatically as we used `--rm` option in `docker run` command.
 
-To remove the network and Image:
+When you are done, you can stop and remove the containers, networks, and volumes created by Docker Compose using the following command:
+```bash
+docker-compose down
 ```
-docker network rm risk-engine-net
-docker rmi risk-engine
+
+Optionally, to remove all images used by any service in the `docker-compose.yml` file, add the `--rmi all` flag:
+```bash
+docker-compose down --rmi all
 ```
+
+This will help you keep your development environment clean and ensure that fresh containers are created the next time you run `docker-compose up`.
 
 # 4. Getting Help
 

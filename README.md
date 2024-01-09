@@ -5,8 +5,9 @@ This Payment System demo repo provides brief workflow operates on AWS along with
 - [Payment System REST APIs](#1-REST-API-guidance)
 - [Payload attributes](#2-Payload-attributes)
 - [Getting Started](#3-Getting-Started)
-- [Getting Help](#4-Getting-Help)
-- [More guidance](#5-Further-Reading)
+- [Architecture](#4-architecture)
+- [Getting Help](#5-Getting-Help)
+- [More guidance](#6-Further-Reading)
 
 # 1. REST API guidance
 The Payment processing platform provides several RESTful APIs to create, capture and retrieve payments.
@@ -199,7 +200,18 @@ docker-compose down --rmi all
 
 This will help you keep your development environment clean and ensure that fresh containers are created the next time you run `docker-compose up`.
 
-# 4. Getting Help
+# 4. Architecture
+
+Visual representations of key concepts and architecture are available in the `/Diagram` directory. Refer to these diagrams for a deeper understanding:
+
+- **AWS Architecture Diagram:**  
+  Depicts the overall structure of the AWS infrastructure.
+  - [AWS Architecture Diagram (JPEG)](/Diagram/payment_system_aws_architecture.jpg)
+  - [AWS Architecture Diagram with Grid (JPEG)](/Diagram/payment_system_aws_architecture_withGrid.jpg)
+  - [AWS Architecture Diagram (PNG)](/Diagram/payment_system_aws_architecture.png)
+  - [AWS Architecture Diagram (PDF)](/Diagram/payment_system_aws_architecture.pdf)
+
+# 5. Getting Help
 
 If you need any help with setting up or running Risk Engine, have questions, or run into any issues, there are a couple ways to get assistance:
 
@@ -220,7 +232,7 @@ Please only use the email for urgent or private matters - for other requests, op
 I will try to respond to emails within 3 business days.
 
 
-# 5. Further Reading
+# 6. Further Reading
 
 This Getting Started guide covers the basics of running Risk Engine in Docker for development and testing purposes.
 

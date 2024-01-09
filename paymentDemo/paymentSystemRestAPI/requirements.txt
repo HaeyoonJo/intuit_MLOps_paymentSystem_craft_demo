@@ -1,0 +1,5 @@
+pika
+flask
+Werkzeug>=2.2,<3.0
+marshmallow==3.20.1
+requests

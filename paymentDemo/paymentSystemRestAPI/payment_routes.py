@@ -16,7 +16,10 @@ def receive_payment():
         validated_data = validate_payment_data(data)
         payment_id = generate_payment_id()
 
-        message = json.dumps(data)
+        message = json.dumps({
+            'payment_data': validated_data,
+            'payment_id': payment_id
+        })
 
         with get_rabbitmq_channel() as channel:    
             channel.queue_declare(queue='my_queue')

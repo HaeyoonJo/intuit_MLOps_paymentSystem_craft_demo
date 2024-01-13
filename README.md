@@ -1,7 +1,6 @@
 # payment System Craft Demo
 This Payment System demo repo provides brief workflow operates on AWS along with deployed Risk Engine application as well as details on Wiki document.
 
-> Unfortunately, I couldn't prepare Question "6. simple Spark code". This will be commit within 9th Jan, Tue under /Spark directory. Also follow up the status in https://github.com/HaeyoonJo/intuit_MLOps_paymentSystem_craft_demo/issues/18
 
 ## Jump to:
 - [Payment System REST APIs](#1-REST-API-guidance)
